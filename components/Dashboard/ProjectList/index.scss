@@ -1,0 +1,39 @@
+.list {
+  width: 1300px;
+  margin: auto;
+  margin-top: 130px;
+  .title {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .list-table {
+    margin-top: 20px;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.16);
+
+    thead {
+      border-bottom: 1px solid $border-color;
+    }
+
+    th,
+    td {
+      padding: 10px;
+    }
+
+    th {
+      font-size: 1.2rem;
+    }
+
+    .table-title {
+      width: 80%;
+    }
+
+    .table-issue-count,
+    .table-issue-ing {
+      width: 10%;
+    }
+  }
+}
