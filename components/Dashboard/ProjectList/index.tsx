@@ -4,12 +4,18 @@ import ClassNames from "classnames/bind";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
 import styles from "./index.scss";
+import Project from "../../../store/project";
 
 const cx = ClassNames.bind(styles);
 
+interface Props {
+  project: Project;
+}
+
 @observer
-class index extends Component {
+class index extends Component<Props> {
   render() {
+    const { project } = this.props;
     return (
       <div className={cx("list")}>
         <div className={cx("top-info")}>
@@ -28,6 +34,21 @@ class index extends Component {
               <th className={cx("table-issue-ing")}>진행중</th>
             </tr>
           </thead>
+          <tbody>
+            {project.projects!.map(project => {
+              return (
+                <Link href={`/project/detail/${project._id}`} key={project._id}>
+                  <tr className={cx("pointer")}>
+                    <td>{project.title}</td>
+                    <td className={cx("center")}>{project.issueCount}</td>
+                    <td className={cx("center")}>
+                      {project.ing === true ? "진행중" : "종료"}
+                    </td>
+                  </tr>
+                </Link>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     );

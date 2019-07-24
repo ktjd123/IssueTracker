@@ -27,9 +27,17 @@
       border-bottom: 1px solid $border-color;
     }
 
+    .pointer {
+      cursor: pointer;
+    }
+
     th,
     td {
       padding: 10px;
+
+      &.center {
+        text-align: center;
+      }
     }
 
     th {

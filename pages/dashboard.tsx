@@ -4,19 +4,29 @@ import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
 import { Navigation, DashboardProjectList } from "../components";
 import Auth from "../store/auth";
+import Project from "../store/project";
 
 interface Props {
   auth: Auth;
+  project: Project;
 }
 
+@inject("project")
 @inject("auth")
 @observer
 class dashboard extends Component<Props> {
   componentDidMount() {
-    const { auth } = this.props;
+    const { auth, project } = this.props;
     auth
       .check()
       .then()
+      .catch(() => {
+        Router.push("/auth");
+      });
+
+    project
+      .getProjects()
+      .then(() => {})
       .catch(() => {
         Router.push("/auth");
       });
@@ -26,7 +36,7 @@ class dashboard extends Component<Props> {
     return (
       <div>
         <Navigation />
-        <DashboardProjectList />
+        <DashboardProjectList project={this.props.project} />
       </div>
     );
   }
