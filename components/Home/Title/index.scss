@@ -1,0 +1,18 @@
+.title {
+  margin-top: 30vh;
+  @include flex-column();
+
+  .first-title {
+    font-family: "Major Mono Display", monospace;
+    font-size: 5rem;
+  }
+
+  .second-title {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+
+  .third-title {
+    margin-top: 10px;
+  }
+}

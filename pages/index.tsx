@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
-import { PageHead } from "../components";
+import { PageHead, Navigation, HomeTitle } from "../components";
 
 @observer
 class index extends Component {
@@ -9,7 +9,8 @@ class index extends Component {
     return (
       <div>
         <PageHead />
-        theseed
+        <Navigation />
+        <HomeTitle />
       </div>
     );
   }
