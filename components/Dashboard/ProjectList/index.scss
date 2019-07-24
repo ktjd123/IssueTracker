@@ -2,9 +2,18 @@
   width: 1300px;
   margin: auto;
   margin-top: 130px;
-  .title {
-    font-size: 2rem;
-    letter-spacing: 0.2rem;
+
+  .top-info {
+    @include flex();
+    justify-content: space-between;
+    .title {
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+    }
+
+    .make-new-project {
+      @include button();
+    }
   }
 
   .list-table {

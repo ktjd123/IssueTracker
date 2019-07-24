@@ -67,6 +67,7 @@
     "nodemon": "^1.19.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.7.0",
-    "tsc-watch": "^2.2.1"
+    "tsc-watch": "^2.2.1",
+    "tslint-origin-ordered-imports-rule": "^1.2.2"
   }
 }

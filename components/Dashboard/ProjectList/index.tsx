@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import ClassNames from "classnames/bind";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
@@ -11,7 +12,14 @@ class index extends Component {
   render() {
     return (
       <div className={cx("list")}>
-        <h1 className={cx("title")}>프로젝트 리스트</h1>
+        <div className={cx("top-info")}>
+          <h1 className={cx("title")}>프로젝트 리스트</h1>
+          <Link href="/project/newProject">
+            <button type="button" className={cx("make-new-project")}>
+              새 프로젝트 만들기
+            </button>
+          </Link>
+        </div>
         <table className={cx("list-table")}>
           <thead>
             <tr>
