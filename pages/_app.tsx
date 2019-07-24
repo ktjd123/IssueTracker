@@ -8,12 +8,14 @@ import { css } from "glamor";
 
 // stores
 import AuthStore from "../store/auth";
+import ProjectStore from "../store/project";
 
 import { PageHead } from "../components";
 
 import "../styles/default.scss";
 
 const auth = new AuthStore();
+const project = new ProjectStore();
 
 export default class MyApp extends App {
   render() {
@@ -28,7 +30,7 @@ export default class MyApp extends App {
             background: "black"
           })}
         />
-        <Provider auth={auth}>
+        <Provider auth={auth} project={project}>
           <Component {...this.state} {...pageProps} />
         </Provider>
       </Container>

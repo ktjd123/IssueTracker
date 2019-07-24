@@ -5,14 +5,19 @@ import { observer, inject } from "mobx-react";
 import { toast } from "react-toastify";
 import { Navigation, ProjectNewProject } from "../../components";
 import Auth from "../../store/auth";
+import Project from "../../store/project";
 
 interface Props {
   auth: Auth;
+  project: Project;
 }
 
+@inject("project")
 @inject("auth")
 @observer
 class newProject extends Component<Props> {
+  @observable title = "";
+
   componentDidMount() {
     const { auth } = this.props;
     auth
@@ -23,16 +28,30 @@ class newProject extends Component<Props> {
       });
   }
 
+  @action
+  onChange = (e: any) => {
+    this[e.target.id] = e.target.value;
+  };
+
   onAddProject = () => {
-    toast.success("프로젝트 생성 완료");
-    Router.push("/dashboard");
+    const { title } = this;
+    const { project } = this.props;
+    if (title.length < 1) return toast.error("제목을 입력해주세요");
+
+    return project.createNewProject(title).then(() => {
+      toast.success("프로젝트 생성 완료");
+      Router.push("/dashboard");
+    });
   };
 
   render() {
     return (
       <div>
         <Navigation />
-        <ProjectNewProject onAddProject={this.onAddProject} />
+        <ProjectNewProject
+          onChange={this.onChange}
+          onAddProject={this.onAddProject}
+        />
       </div>
     );
   }
