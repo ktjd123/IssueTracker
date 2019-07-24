@@ -6,6 +6,10 @@
     @include flex-column();
     align-items: flex-start;
 
+    & + .input-box {
+      margin-top: 30px;
+    }
+
     .input-title {
       font-size: 2rem;
     }

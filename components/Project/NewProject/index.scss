@@ -6,6 +6,10 @@
     @include flex-column();
     align-items: flex-start;
 
+    & + .input-box {
+      margin-top: 30px;
+    }
+
     .input-title {
       font-size: 2rem;
     }
@@ -20,10 +24,23 @@
     }
   }
 
+  .quill {
+    margin-top: 20px;
+    width: 100%;
+    background: white;
+  }
   .submit {
     margin-top: 50px;
 
     @include button();
     width: 100%;
   }
+}
+
+strong {
+  font-weight: bold !important;
+}
+
+em {
+  font-style: italic !important;
 }

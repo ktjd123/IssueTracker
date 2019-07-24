@@ -13,6 +13,7 @@ import ProjectStore from "../store/project";
 import { PageHead } from "../components";
 
 import "../styles/default.scss";
+import "react-quill/dist/quill.snow.css";
 
 const auth = new AuthStore();
 const project = new ProjectStore();
