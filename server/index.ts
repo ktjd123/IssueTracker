@@ -84,7 +84,10 @@ app.prepare().then(() => {
 
   // Routes
   // server.get('/', customRequestHandler.bind(undefined, '/'));
-  server.get("/about/:id", customRequestHandler.bind(undefined, "/about"));
+  server.get(
+    "/project/detail/:id",
+    customRequestHandler.bind(undefined, "/project/detail")
+  );
   server.get("*", (req: express.Request, res: express.Response) => {
     defaultRequestHandler(req, res);
   });
