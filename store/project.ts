@@ -35,6 +35,8 @@ export default class project {
 
     if (result.data.code) throw result.data.code;
 
+    this.getProjects();
+
     return true;
   };
 }
