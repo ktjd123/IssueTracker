@@ -8,12 +8,13 @@ const cx = ClassNames.bind(styles);
 
 interface Props {
   onChange: (_: React.FormEvent) => void;
+  onChangeQuill: (_: React.FormEvent) => void;
   onAddIssue: () => void;
 }
 @observer
 class index extends Component<Props> {
   render() {
-    const { onChange, onAddIssue } = this.props;
+    const { onChange, onChangeQuill, onAddIssue } = this.props;
     if (typeof document === "undefined") return <div />;
     const ReactQuill = require("react-quill");
     const modules = {
@@ -43,7 +44,11 @@ class index extends Component<Props> {
         </div>
         <div className={cx("input-box")}>
           <h1 className={cx("input-title")}>내용</h1>
-          <ReactQuill modules={modules} className={cx("quill")} />
+          <ReactQuill
+            modules={modules}
+            className={cx("quill")}
+            onChange={onChangeQuill}
+          />
         </div>
         <button type="button" className={cx("submit")} onClick={onAddIssue}>
           이슈 생성

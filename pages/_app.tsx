@@ -9,6 +9,7 @@ import { css } from "glamor";
 // stores
 import AuthStore from "../store/auth";
 import ProjectStore from "../store/project";
+import IssueStore from "../store/issue";
 
 import { PageHead } from "../components";
 
@@ -17,6 +18,7 @@ import "react-quill/dist/quill.snow.css";
 
 const auth = new AuthStore();
 const project = new ProjectStore();
+const issue = new IssueStore();
 
 export default class MyApp extends App {
   render() {
@@ -31,7 +33,7 @@ export default class MyApp extends App {
             background: "black"
           })}
         />
-        <Provider auth={auth} project={project}>
+        <Provider auth={auth} project={project} issue={issue}>
           <Component {...this.state} {...pageProps} />
         </Provider>
       </Container>

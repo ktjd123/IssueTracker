@@ -1,9 +1,27 @@
 import express from "express";
 import mongoose from "mongoose";
 import joi from "joi";
-import { Issue, Member } from "../models";
+import { Issue, Member, Project } from "../models";
 
 const router = express();
+
+router.get("/list/:id", async (req, res) => {
+  if (req.session === undefined) return res.json({ code: 1 });
+  const { id } = req.params;
+  if (mongoose.Types.ObjectId.isValid(id) !== true)
+    return res.json({ code: 2 });
+
+  const project = await Project.findById(id).lean();
+  const member = await Member.findOne({
+    account: req.session!.info._id,
+    project: project._id
+  }).lean();
+  if (!member) return res.json({ code: 3 });
+
+  const issues = await Issue.find({ project: project._id });
+
+  return res.json(issues);
+});
 
 router.post("/new", async (req, res) => {
   if (req.session === undefined) return res.json({ code: 1 });
@@ -43,7 +61,7 @@ router.post("/new", async (req, res) => {
 
   if (!memberCheck) return res.json({ code: 4 });
 
-  const newIssue = new Issue({ title, content });
+  const newIssue = new Issue({ title, content, project });
 
   await newIssue.save();
 

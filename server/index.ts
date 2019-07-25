@@ -88,6 +88,14 @@ app.prepare().then(() => {
     "/project/detail/:id",
     customRequestHandler.bind(undefined, "/project/detail")
   );
+  server.get(
+    "/issue/newIssue/:id",
+    customRequestHandler.bind(undefined, "/issue/newIssue")
+  );
+  server.get(
+    "/issue/detail/:id",
+    customRequestHandler.bind(undefined, "/issue/detail")
+  );
   server.get("*", (req: express.Request, res: express.Response) => {
     defaultRequestHandler(req, res);
   });

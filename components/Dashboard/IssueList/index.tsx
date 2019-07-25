@@ -4,19 +4,24 @@ import ClassNames from "classnames/bind";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
 import styles from "./index.scss";
+import Issue from "../../../store/issue";
 
 const cx = ClassNames.bind(styles);
 
-interface Props {}
+interface Props {
+  id: string;
+  issue: Issue;
+}
 
 @observer
 class index extends Component<Props> {
   render() {
+    const { id, issue } = this.props;
     return (
       <div className={cx("list")}>
         <div className={cx("top-info")}>
           <h1 className={cx("title")}>이슈 리스트</h1>
-          <Link href="/issue/newIssue">
+          <Link href={`/issue/newIssue/${id}`}>
             <button type="button" className={cx("make-new-project")}>
               새 이슈 만들기
             </button>
@@ -31,13 +36,19 @@ class index extends Component<Props> {
             </tr>
           </thead>
           <tbody>
-            <Link href={`/project/detail/`}>
-              <tr className={cx("pointer")}>
-                <td>제목</td>
-                <td className={cx("center")}>카운트</td>
-                <td className={cx("center")}>종료</td>
-              </tr>
-            </Link>
+            {issue.issues.map(issue => {
+              return (
+                <Link href={`/issue/detail/${issue._id}`} key={issue._id}>
+                  <tr className={cx("pointer")}>
+                    <td>{issue.title}</td>
+                    <td className={cx("center")}>{issue.viewCount}</td>
+                    <td className={cx("center")}>
+                      {issue.open === true ? "열림" : "닫힘"}
+                    </td>
+                  </tr>
+                </Link>
+              );
+            })}
           </tbody>
         </table>
       </div>

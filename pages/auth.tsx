@@ -45,6 +45,7 @@ class login extends Component<Props> {
       })
       .catch((code: number) => {
         const errMsg: Array<string> = [
+          "",
           "다시 입력해주세요",
           "없는 아이디입니다",
           "비밀번호가 맞지 않습니다"
@@ -65,6 +66,7 @@ class login extends Component<Props> {
       })
       .catch((code: number) => {
         const errMsg: Array<string> = [
+          "",
           "다시 입력해주세요",
           "이미 존재하는 아이디입니다"
         ];

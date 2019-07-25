@@ -17,6 +17,11 @@
     .logo {
       font-family: "Major Mono Display", monospace;
       font-size: 2rem;
+
+      .sub-logo {
+        margin-left: 10px;
+        font-size: 1.2rem;
+      }
     }
     .dashboard {
       @include button();

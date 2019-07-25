@@ -14,7 +14,9 @@ class index extends Component {
       <div className={cx("navigation")}>
         <section className={cx("header")}>
           <Link href="/">
-            <a className={cx("logo")}>Dekina</a>
+            <a className={cx("logo")}>
+              Dekina<strong className={cx("sub-logo")}>ISSUE TRACKER</strong>
+            </a>
           </Link>
           <Link href="/dashboard">
             <a className={cx("dashboard")}>대시보드</a>
