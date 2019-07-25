@@ -13,4 +13,14 @@
     border-radius: $border-radius;
     box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.16);
   }
+
+  .button {
+    width: 100%;
+    margin-top: 20px;
+    @include button();
+
+    &.reverse {
+      @include button-reverse();
+    }
+  }
 }

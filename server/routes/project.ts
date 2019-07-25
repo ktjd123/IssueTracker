@@ -10,7 +10,9 @@ router.get("/list", async (req, res) => {
   const membered = await Member.find(
     { account: req.session!.info._id },
     { project: true }
-  ).lean();
+  )
+    .sort({ _id: -1 })
+    .lean();
 
   let projects: Array<Object> = [];
 

@@ -5,7 +5,8 @@ const APIBASE = "/api/issue";
 const API = {
   listIssue: APIBASE + "/list",
   newIssue: APIBASE + "/new",
-  detailIssue: APIBASE + "/detail"
+  detailIssue: APIBASE + "/detail",
+  toggleOpen: APIBASE + "/toggleOpen"
 };
 
 export interface IIssue {
@@ -60,5 +61,15 @@ export default class issue {
     if (result.data.code) throw result.data.code;
 
     return result.data;
+  };
+
+  @action toggleOpen = async (id: string) => {
+    const result = await axios.get(API.toggleOpen + "/" + id);
+
+    if (result.data.code) throw result.data.code;
+
+    this.getDetailIssue(id);
+
+    return true;
   };
 }
