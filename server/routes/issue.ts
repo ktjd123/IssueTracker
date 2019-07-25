@@ -13,6 +13,10 @@ router.get("/detail/:id", async (req, res) => {
 
   const issue = await Issue.findById(id);
 
+  issue!.viewCount += 1;
+
+  await issue!.save();
+
   return res.json(issue);
 });
 

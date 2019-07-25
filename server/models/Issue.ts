@@ -4,6 +4,7 @@ interface IIssue extends Document {
   project: string;
   title: string;
   content: string;
+  viewCount: number;
   open: boolean;
 }
 
