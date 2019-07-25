@@ -15,7 +15,8 @@ interface Props {
 class index extends Component<Props> {
   render() {
     const { onChange, onChangeQuill, onAddIssue } = this.props;
-    if (typeof document === "undefined") return <div />;
+    if (typeof document === "undefined")
+      return <div className={cx("new-project")} />;
     const ReactQuill = require("react-quill");
     const modules = {
       toolbar: [

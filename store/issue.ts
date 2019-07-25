@@ -4,10 +4,11 @@ import axios from "axios";
 const APIBASE = "/api/issue";
 const API = {
   listIssue: APIBASE + "/list",
-  newIssue: APIBASE + "/new"
+  newIssue: APIBASE + "/new",
+  detailIssue: APIBASE + "/detail"
 };
 
-interface Issue {
+export interface IIssue {
   _id: string;
   title: string;
   content: string;
@@ -16,7 +17,14 @@ interface Issue {
 }
 
 export default class issue {
-  @observable issues: Array<Issue> = [];
+  @observable issues: Array<IIssue> = [];
+  @observable detailIssue: IIssue = {
+    _id: "",
+    title: "로딩중",
+    content: "로딩중",
+    viewCount: 0,
+    open: true
+  };
 
   @action getIssues = async (id: string) => {
     const result = await axios.get(API.listIssue + "/" + id);
@@ -28,6 +36,18 @@ export default class issue {
     });
 
     return this.issues;
+  };
+
+  @action getDetailIssue = async (id: string) => {
+    const result = await axios.get(API.detailIssue + "/" + id);
+
+    if (result.data.code) throw result.data.code;
+
+    runInAction(() => {
+      this.detailIssue = result.data;
+    });
+
+    return this.detailIssue;
   };
 
   @action createNewIssue = async (

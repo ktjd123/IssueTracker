@@ -5,6 +5,17 @@ import { Issue, Member, Project } from "../models";
 
 const router = express();
 
+router.get("/detail/:id", async (req, res) => {
+  if (req.session === undefined) return res.json({ code: 1 });
+  const { id } = req.params;
+  if (mongoose.Types.ObjectId.isValid(id) !== true)
+    return res.json({ code: 1 });
+
+  const issue = await Issue.findById(id);
+
+  return res.json(issue);
+});
+
 router.get("/list/:id", async (req, res) => {
   if (req.session === undefined) return res.json({ code: 1 });
   const { id } = req.params;
@@ -18,7 +29,10 @@ router.get("/list/:id", async (req, res) => {
   }).lean();
   if (!member) return res.json({ code: 3 });
 
-  const issues = await Issue.find({ project: project._id });
+  const issues = await Issue.find(
+    { project: project._id },
+    { title: true, viewCount: true, open: true }
+  ).lean();
 
   return res.json(issues);
 });

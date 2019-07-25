@@ -13,8 +13,9 @@ import IssueStore from "../store/issue";
 
 import { PageHead } from "../components";
 
+import "quill/dist/quill.snow.css";
+
 import "../styles/default.scss";
-import "react-quill/dist/quill.snow.css";
 
 const auth = new AuthStore();
 const project = new ProjectStore();

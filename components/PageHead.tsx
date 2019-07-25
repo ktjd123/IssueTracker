@@ -3,7 +3,7 @@ import Head from "next/head";
 const PageHead = ({
   title = "데키나 이슈 트래커",
   description = "데키나 주식회사 이슈 트래커",
-  url = "localhost"
+  url = "issue.dekina.com"
 }) => (
   <Head>
     <title>{title}</title>
