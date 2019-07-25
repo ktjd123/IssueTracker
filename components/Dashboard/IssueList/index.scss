@@ -11,8 +11,16 @@
       letter-spacing: 0.2rem;
     }
 
-    .make-new-project {
-      @include button();
+    .buttons {
+      @include flex();
+      justify-content: space-between;
+      width: 300px;
+      .add-new-member {
+        @include button-reverse();
+      }
+      .make-new-project {
+        @include button();
+      }
     }
   }
 

@@ -5,6 +5,13 @@ import { Account } from "../models";
 
 const router = express();
 
+router.get("/search/:id", async (req, res) => {
+  const { id } = req.params;
+  const accounts = await Account.find({ id }).lean();
+
+  return res.json(accounts);
+});
+
 router.get("/check", async (req: express.Request, res: express.Response) => {
   if (!req.session!.info) return res.json({ code: 1 });
   const account = await Account.findById(req.session!.info._id);

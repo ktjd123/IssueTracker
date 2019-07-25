@@ -21,11 +21,18 @@ class index extends Component<Props> {
       <div className={cx("list")}>
         <div className={cx("top-info")}>
           <h1 className={cx("title")}>이슈 리스트</h1>
-          <Link href={`/issue/newIssue/${id}`}>
-            <button type="button" className={cx("make-new-project")}>
-              새 이슈 만들기
-            </button>
-          </Link>
+          <div className={cx("buttons")}>
+            <Link href={`/project/addMember/${id}`}>
+              <button type="button" className={cx("add-new-member")}>
+                새 멤버 추가하기
+              </button>
+            </Link>
+            <Link href={`/issue/newIssue/${id}`}>
+              <button type="button" className={cx("make-new-project")}>
+                새 이슈 만들기
+              </button>
+            </Link>
+          </div>
         </div>
         <table className={cx("list-table")}>
           <thead>

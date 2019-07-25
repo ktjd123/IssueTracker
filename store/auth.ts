@@ -8,7 +8,7 @@ enum roleEnum {
   User
 }
 
-interface authInterface {
+export interface authInterface {
   _id: string;
   id: string;
   role: roleEnum;
@@ -16,6 +16,17 @@ interface authInterface {
 
 export default class auth {
   @observable auth: authInterface | undefined;
+  @observable searchedAccounts: Array<authInterface> = [];
+
+  @action searchUsers = async (id: string) => {
+    const result = await axios.get(API + "/search/" + id);
+
+    runInAction(() => {
+      this.searchedAccounts = result.data;
+    });
+
+    return this.searchUsers;
+  };
 
   @action check = async (renew = false) => {
     if (renew === false && typeof this.auth !== "undefined") return this.auth;

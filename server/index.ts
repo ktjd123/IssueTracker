@@ -85,6 +85,10 @@ app.prepare().then(() => {
   // Routes
   // server.get('/', customRequestHandler.bind(undefined, '/'));
   server.get(
+    "/project/addMember/:id",
+    customRequestHandler.bind(undefined, "/project/addMember")
+  );
+  server.get(
     "/project/detail/:id",
     customRequestHandler.bind(undefined, "/project/detail")
   );
@@ -96,6 +100,7 @@ app.prepare().then(() => {
     "/issue/detail/:id",
     customRequestHandler.bind(undefined, "/issue/detail")
   );
+
   server.get("*", (req: express.Request, res: express.Response) => {
     defaultRequestHandler(req, res);
   });

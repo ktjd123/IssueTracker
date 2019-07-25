@@ -10,6 +10,7 @@ import { css } from "glamor";
 import AuthStore from "../store/auth";
 import ProjectStore from "../store/project";
 import IssueStore from "../store/issue";
+import MemberStore from "../store/member";
 
 import { PageHead } from "../components";
 
@@ -20,6 +21,7 @@ import "../styles/default.scss";
 const auth = new AuthStore();
 const project = new ProjectStore();
 const issue = new IssueStore();
+const member = new MemberStore();
 
 export default class MyApp extends App {
   render() {
@@ -34,7 +36,7 @@ export default class MyApp extends App {
             background: "black"
           })}
         />
-        <Provider auth={auth} project={project} issue={issue}>
+        <Provider auth={auth} project={project} issue={issue} member={member}>
           <Component {...this.state} {...pageProps} />
         </Provider>
       </Container>
