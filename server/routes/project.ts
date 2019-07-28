@@ -5,7 +5,7 @@ import { Project, Member, Issue } from "../models";
 const router = express();
 
 router.get("/list", async (req, res) => {
-  if (req.session === undefined) return res.json({ code: 1 });
+  if (req.session!.info === undefined) return res.json({ code: 1 });
 
   const membered = await Member.find(
     { account: req.session!.info._id },

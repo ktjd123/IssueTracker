@@ -67,7 +67,7 @@ router.get("/list/:id", async (req, res) => {
     { project: project._id },
     { title: true, viewCount: true, open: true }
   )
-    .sort({ open: true, _id: -1 })
+    .sort({ open: -1, _id: -1 })
     .lean();
 
   return res.json(issues);
